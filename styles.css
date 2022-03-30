@@ -25,3 +25,8 @@ input[type="text"]:focus {
 h6, i {
     color: white;
 }
+
+.filtered {
+    display: none;
+}
+/* filters search terms */

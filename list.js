@@ -25,23 +25,25 @@ addForm.addEventListener("submit", (e) => {
 list.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete")) {
     e.target.parentElement.remove();
-  };
+  }
   //if on click that specific item has a class name of delete, it'll remove
   //deleting parent elment, which is entire li tag
 });
 
 const filterTodos = (term) => {
+  
     Array.from(list.children)
-    .filter((todo) => {
-        return !todo.textContent.includes(term);
-    })
-    .forEach((todo) => {
-        todo.classList.add('.filtered');
-    })
-    //checks search term in li children, if included it does not add filtered class to li
+    .filter((todo) => !todo.textContent.includes(term))
+    .forEach((todo) => todo.classList.add("filtered"));
+  //checks search term in li children, if included it does not add filtered class to li
+
+  Array.from(list.children)
+    .filter((todo) => todo.textContent.includes(term))
+    .forEach((todo) => todo.classList.remove("filtered"));
+  //this function checks term to update if term is updated while typing
 };
 
-search.addEventListener('keyup', (e) => {
-    const term = search.value.trim();
-    filterTodos(term);
+search.addEventListener("keyup", () => {
+  const term = search.value.trim();
+  filterTodos(term);
 });
