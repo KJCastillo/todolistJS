@@ -27,6 +27,6 @@ h6, i {
 }
 
 .filtered {
-    display: none;
+    display: none !important;
 }
 /* filters search terms */

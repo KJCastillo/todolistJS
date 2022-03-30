@@ -33,17 +33,18 @@ list.addEventListener("click", (e) => {
 const filterTodos = (term) => {
   
     Array.from(list.children)
-    .filter((todo) => !todo.textContent.includes(term))
+    .filter((todo) => !todo.textContent.toLowerCase().includes(term))
     .forEach((todo) => todo.classList.add("filtered"));
-  //checks search term in li children, if included it does not add filtered class to li
+  //checks search term in li children
+  //if term is not in task, filtered class get added to it to not display
 
   Array.from(list.children)
-    .filter((todo) => todo.textContent.includes(term))
+    .filter((todo) => todo.textContent.toLowerCase().includes(term))
     .forEach((todo) => todo.classList.remove("filtered"));
   //this function checks term to update if term is updated while typing
 };
 
 search.addEventListener("keyup", () => {
-  const term = search.value.trim();
+  const term = search.value.trim().toLowerCase();
   filterTodos(term);
 });
