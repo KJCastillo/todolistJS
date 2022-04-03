@@ -31,8 +31,7 @@ list.addEventListener("click", (e) => {
 });
 
 const filterTodos = (term) => {
-  
-    Array.from(list.children)
+  Array.from(list.children)
     .filter((todo) => !todo.textContent.toLowerCase().includes(term))
     .forEach((todo) => todo.classList.add("filtered"));
   //checks search term in li children
@@ -49,25 +48,39 @@ search.addEventListener("keyup", () => {
   filterTodos(term);
 });
 
-
 //digital clock
-const clock = document.querySelector('.clock');
+const clock = document.querySelector(".clock");
 
 const tick = () => {
+  const now = new Date();
 
-    const now = new Date();
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const s = now.getSeconds();
 
-    const h = now.getHours();
-    const m = now.getMinutes();
-    const s = now.getSeconds();
-
-    const html = `
+  const html = `
         <span>${h}</span> : 
         <span>${m}</span> : 
         <span>${s}</span>
     `;
 
-    clock.innerHTML = html
+  clock.innerHTML = html;
 };
 
 setInterval(tick, 1000);
+
+//date
+const date = document.querySelector(".date");
+const now = new Date();
+
+const today = () => {
+  const day = dateFns.format(now, "dddd, MMMM Do YYYY");
+  //add dateFns script in HTML
+  const html = `
+  <span>${day}</span>  
+  `;
+
+  date.innerHTML = html;
+};
+
+today();
